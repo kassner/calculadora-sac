@@ -1,16 +1,28 @@
 $(function(){
-	var run = function() {
-		Calculator.calculate();
-	}
+	$('#valor').mask('000.000.000.000.000,00', {
+		reverse: true,
+		onChange: function() {
+			Calculator.calculate();
+		}
+	});
 
-	$('#valor').on('change', run);
-	$('#meses').on('change', run);
-	$('#juros').on('change', run);
+	$('#meses').mask('##0', {
+		onChange: function() {
+			Calculator.calculate();
+		}
+	});
+
+	$('#juros').mask('#00,00', {
+		reverse: true,
+		onChange: function() {
+			Calculator.calculate();
+		}
+	});
 
 	$('body').on('click', '#fgts-add', Calculator.onFGTSAdd);
 	$('body').on('click', 'a.fgts-delete', Calculator.onFGTSDelete);
 
-	run();
+	Calculator.calculate();
 });
 
 var Calculator = {
